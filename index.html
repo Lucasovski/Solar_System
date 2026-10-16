@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Solar Interativo — Demonstração de Aprendizado</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>🪐 Sistema Solar Interativo</h1>
+    <p class="subtitle">Clique em um planeta para explorar seus dados. Use os controles para reproduzir, pausar e ajustar a velocidade da simulação.</p>
+  </header>
+
+  <main class="layout">
+    <!-- Palco da simulação -->
+    <section class="stage-wrap" aria-label="Simulação do sistema solar">
+      <div id="stage" class="stage">
+        <canvas id="orbitCanvas"></canvas>
+        <div id="bodies"></div>
+        <p id="hint" class="hint">Dica: clique no Sol ou em qualquer planeta</p>
+      </div>
+
+      <!-- Controles -->
+      <div class="controls" role="group" aria-label="Controles da simulação">
+        <button id="btnPlayPause" class="btn primary" aria-pressed="true">⏸ Pausar</button>
+        <button id="btnReset" class="btn">↺ Reiniciar</button>
+        <label class="speed-label" for="speedRange">
+          Velocidade: <strong id="speedValue">1×</strong>
+        </label>
+        <input type="range" id="speedRange" min="0" max="100" value="35" step="1"
+               aria-label="Velocidade da simulação" />
+        <label class="toggle">
+          <input type="checkbox" id="chkOrbits" checked /> Órbitas
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="chkLabels" checked /> Nomes
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="chkRealistic" /> Escala relativa de tamanho
+        </label>
+      </div>
+    </section>
+
+    <!-- Painel de informações -->
+    <aside id="infoPanel" class="info-panel" aria-live="polite">
+      <div class="info-empty">
+        <div class="info-icon">☀️</div>
+        <h2>Selecione um corpo celeste</h2>
+        <p>Clique no Sol ou em um dos oito planetas para ver nome, tamanho, distância do Sol e período orbital.</p>
+      </div>
+      <div class="info-content" hidden>
+        <div class="info-hero">
+          <span id="infoSwatch" class="swatch"></span>
+          <h2 id="infoName">—</h2>
+          <span id="infoType" class="badge">—</span>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Diâmetro (tamanho)</dt><dd id="infoSize">—</dd></div>
+          <div class="stat"><dt>Distância do Sol</dt><dd id="infoDistance">—</dd></div>
+          <div class="stat"><dt>Período orbital (ano local)</dt><dd id="infoPeriod">—</dd></div>
+          <div class="stat"><dt>Velocidade orbital média</dt><dd id="infoSpeed">—</dd></div>
+          <div class="stat"><dt>Luas conhecidas</dt><dd id="infoMoons">—</dd></div>
+        </dl>
+        <p id="infoTrivia" class="trivia"></p>
+        <div class="scale-bar-wrap">
+          <h3>Comparação de tamanho</h3>
+          <div id="scaleBar" class="scale-bar"></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <small>As órbitas usam espaçamento comprimido e velocidades proporcionais aos períodos reais — formato ilustrativo, não astronômico em escala.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
